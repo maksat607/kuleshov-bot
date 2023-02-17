@@ -33,7 +33,7 @@ Route::middleware('splade')->group(function () {
     });
 
     Route::get('customer/{customer}/chat', [\App\Http\Controllers\CustomerController::class, 'messages'])->name('messages');
-    Route::post('/message', [\App\Http\Controllers\MessageController::class,'handleWebhook']);
+//    Route::post('/message', [\App\Http\Controllers\MessageController::class,'handleWebhook']);
     Route::middleware('auth')->group(function () {
         Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users');
         Route::get('chat', [\App\Http\Controllers\CustomerController::class, 'chat'])->name('chat');

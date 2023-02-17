@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Storage;
 use Telegram\Bot\Laravel\Facades\Telegram;
+use Telegram\Bot\Api;
 
 class TelegramController extends Controller
 {
@@ -23,8 +25,15 @@ class TelegramController extends Controller
 
         return 'OK';
     }
+    public function setwebhook($update){
+        $telegram = new Api(env('TELEGRAM_BOT_TOKEN'));
+
+        $response = $telegram->setWebhook(['url' => 'https://example.com/{token}/webhook', 'https://cars.vinz.ru/telegram-bot']);
+
+    }
     public function start($update)
     {
+        Storage::disk('local')->put('example.txt', 'Contents');
         $message = $update->getMessage();
         $chat_id = $message->getChat()->getId();
         $text = 'Welcome to my bot!';

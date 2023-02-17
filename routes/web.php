@@ -17,6 +17,7 @@ use App\Http\Controllers\TelegramController;
 
 Route::post(env('TELEGRAM_BOT_TOKEN'), [TelegramController::class, 'handle']);
 Route::post('/telegram-bot', [TelegramController::class, 'start']);
+//Route::get('/telegram-bot', [TelegramController::class, 'setwebhook']);
 
 Route::middleware('splade')->group(function () {
     // Registers routes to support password confirmation in Form and Link components...

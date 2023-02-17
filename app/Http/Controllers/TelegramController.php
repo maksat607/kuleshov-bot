@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use Telegram\Bot\Laravel\Facades\Telegram;
 
 class TelegramController extends Controller
 {
@@ -36,6 +37,7 @@ class TelegramController extends Controller
             'chat_id' => $chat_id,
             'text' => $text,
         ];
+
 
         Telegram::sendMessage($data);
     }

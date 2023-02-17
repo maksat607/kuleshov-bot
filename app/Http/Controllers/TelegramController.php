@@ -12,7 +12,7 @@ class TelegramController extends Controller
 {
     public function handle(Request $request)
     {
-
+        Storage::disk('local')->put('example.txt', json_encode($request->all()));
         $message = $request->input('message.text');
         $chatId = $request->input('message.chat.id');
 

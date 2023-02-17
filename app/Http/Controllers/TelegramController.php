@@ -12,6 +12,7 @@ class TelegramController extends Controller
 {
     public function handle(Request $request)
     {
+
         $message = $request->input('message.text');
         $chatId = $request->input('message.chat.id');
 

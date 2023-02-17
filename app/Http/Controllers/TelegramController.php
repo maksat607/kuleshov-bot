@@ -25,19 +25,20 @@ class TelegramController extends Controller
 
         return 'OK';
     }
-    public function setwebhook($update){
-        $telegram = new Api(env('TELEGRAM_BOT_TOKEN'));
-
-        $response = $telegram->setWebhook(['url' => 'https://example.com/{token}/webhook', 'https://cars.vinz.ru/telegram-bot']);
+    public function setwebhook(){
+        Storage::disk('local')->put('example.txt', 'Contents');
+//        $telegram = new Api(env('TELEGRAM_BOT_TOKEN'));
+//
+//        $response = $telegram->setWebhook(['url' => 'https://example.com/{token}/webhook', 'https://cars.vinz.ru/telegram-bot']);
 
     }
-    public function start($update)
+    public function start(Request $request)
     {
-        Storage::disk('local')->put('example.txt', 'Contents');
-        $message = $update->getMessage();
-        $chat_id = $message->getChat()->getId();
-        $text = 'Welcome to my bot!';
-        $this->sendMessage($chat_id, $text);
+        Storage::disk('local')->put('example.txt', json_encode($request->all()));
+//        $message = $update->getMessage();
+//        $chat_id = $message->getChat()->getId();
+//        $text = 'Welcome to my bot!';
+//        $this->sendMessage($chat_id, $text);
     }
 
     private function sendMessage($chat_id, $text)

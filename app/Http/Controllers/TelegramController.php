@@ -22,4 +22,21 @@ class TelegramController extends Controller
 
         return 'OK';
     }
+    public function start($update)
+    {
+        $message = $update->getMessage();
+        $chat_id = $message->getChat()->getId();
+        $text = 'Welcome to my bot!';
+        $this->sendMessage($chat_id, $text);
+    }
+
+    private function sendMessage($chat_id, $text)
+    {
+        $data = [
+            'chat_id' => $chat_id,
+            'text' => $text,
+        ];
+
+        Telegram::sendMessage($data);
+    }
 }
